@@ -1,0 +1,60 @@
+I have divided the testing process into 2 parts: before the program is finished, after the program is finished.
+Before the program is finished:
+1. Use the files in Turtle/TTLs to check whether the file can be correctly read into the program, I used a 2D-array of char to store the input file, after the file is read into the array, I print out the array and check whether there is anything wrong or missing comparing to the input file.
+Example:
+Input File: Turtle/TTLs/forward.ttl
+  Content:
+    START
+      FORWARD 15
+    END
+  Output:
+    START
+    FORWARD
+    15
+    END
+
+2. For each function in the program, 2 kinds of test is applied: valid input file and invalid input file (some are the files in Turtle/TTLs, some are written by myself), each kind of test include several examples, the output of each function is temporarily set to printf("FunctionName pass\n") if the input is valid; printf("FunctionName failed\n") if the input is invalid. The test of each function is applied seperately.
+Example:
+Test Function: 
+  void Prog(Program *p) {...}
+Input File1: Turtle/TTLs/forward.ttl
+  Type: valid
+  Content:
+    START
+      FORWARD 15
+    END
+  Output: 
+    Prog pass
+
+Input File2: 
+  Type: invalid
+  Content:
+      FORWARD 1
+    END
+  Output: 
+    Prog failed
+
+After the program is finished:
+1. I added a printf("Parse OK\n"); after the whole parse process is finished and if anything goes wrong (like a LOOP instruction missing a OVER or a FORWARD instruction missing a VARNUM) the program will end immediately and output an ERROR to the terminal telling which kind of error has taken place.
+Example:
+Input File1: Turtle/TTLs/forward.ttl
+  Type: valid
+  Content:
+    START
+      FORWARD 15
+    END
+  Output:
+    Parse OK
+
+Input File2: Turtle/TTLs/fail_parse_ok_interp.ttl
+  Type: invalid
+  Content:
+    START
+      LOOP C OVER { }
+        GARBAGE
+      END
+    END
+  Output:
+    Fatal Error Expecting a FORWARD/RIGHT/COLOUR/LOOP/SET ? occurred in Parse/parse.c, line 70
+
+2. After all the tests are finished, I deleted all the printf sentences which are used to show that the input file has passed the parse process and left all the ERROR statements which are used to show that the input file hasn't passed the parse process and which kind of error has taken place in the file.

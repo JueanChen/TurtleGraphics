@@ -1,0 +1,11 @@
+In the extension, I didn't make any change to the grammar, I extended the program to improve the 
+human-computer ineraction experience. 
+First, I added some descriptions about the grammar of Turtle,and now, the extension program allows the following functions:
+1. Users can choose to input a existing file.
+2. Users can choose to write a new file by themselves according to the grammar, this file will then 
+   input to the program. The program will pause when users are writing the new file and will continue
+   when they input 0 in the terminal.
+3. users can choose which kind of output they want after the file is input, there are 3 kind of output:
+   one, directly output the picture to the screen after the input file is parsed and interpreted;
+   two, output the picture to a txt file;
+   three, output the picture to a ps and a pdf file.

@@ -1,0 +1,39 @@
+    I have divided the testing process into 2 parts: before the program is finished, after the program is finished.
+
+Before the program is finished:
+1. Prog(), Next(), Inslst(), Ins():
+   Use the files in Turtle/TTLs to check whether the file can be correctly read into the program, I used a 2D-array of char to store the input file, after the file is read into the array, I print out the array and check whether there is anything wrong or missing comparing to the input file.
+Example:
+Input File: Turtle/TTLs/forward.ttl
+  Content:
+    START
+      FORWARD 15
+    END
+  Output:
+    START
+    FORWARD
+    15
+    END
+
+2. Fwd():
+   The Fwd() function has 2 purposes: read VARNUM from Varnum() and write the corresponding output to the output matrix, it has been tested using a white-box testing strategy, which printed out the value it read and the new output matrix which has been written by Fwd() is also printed out.
+
+3. Rgt():
+   The Rgt() function has 2 purposes: read VARNUM from Varnum() which is a degree and then add this degree to the current angle of the FWD instruction, it has been tested using a white-box testing strategy, which printed out the degree it read and the new angle after the adding process is also printed out.  
+
+4. Col():
+   The Rgt() function has 2 purposes: read VAR or a WORD which is a string of colour and then change the colour of the FWD instruction to it, it has been tested using a white-box testing strategy, which printed out the colour it read and the new colour of the FWD instruction after the changing process is also printed out.
+
+5. Loop():
+   The Loop() function is used to simulate a for-loop alike function, it's test strategy is white-box testing strategy, during each test, the current variable of the VAR will be printed out, and the number of the tokens inside one loop will also be printed out.
+   When I tried to achieve the function of LOOP instruction, I found out that if I just store the LOOP sequentially, it will become a mess when there are more LOOP instructions inside a LOOP instruction, so I create a 3D-array to store all the variables of VAR in a input file, the position of each VAR is set according to the alphabetical sequence (e.g. A -> [0][][], B -> [1][][], etc.). By applying this, it will become easier when I need to access the VAR, the program can directly find the position of where the variables are stored according to the letter of the VAR.
+
+6. Set():
+   The Set() function is used to set the value of a VAR, it has 2 kinds of expression, one is directly set the VAR to a VARNUM, the other is to set the VAR to the value of the answer of a postfix expression. The test strategy of it is also white box strategy, which printed out the the LTR of the SET instruction, the value of diret set / the answer of the postfix expression. 
+   When I first tried to achieve the function of SET instruction, I didn't notice that the SET instruction needs to contain more than 2 VARNUM and 1 OP (shown in the example of the question), I only pepared a array of 2 to store the VARNUM in SET. But after checking the Teams, I noticed this problem, so I changed the array and the structure of the SET function, I increased the max number of the variables which can be stored in the setStack, and the structure of the Set function has been adjusted to a stack-like form, when a new variable is read in the SET instrction, it will be added to top of setStack which is indicated by the setIndex, the pointer of it (setIndex) will then increase by 1, when a operator is read, the setStack will pop out the top 2 values and calculate the result and store it back to the setStack, this time, the setIndex will decrease by 1 instead of increase.
+
+7. All the functions left:
+   Since the functions left are all related to the output, they are all tested and adjusted after the program is finished.
+
+After the program is finished:
+1. Run the "make all" command and "make run" command to check whether there is any error and if all the outputs are correct comparing with the files in Turtle/Results.
